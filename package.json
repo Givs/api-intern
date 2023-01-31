@@ -1,0 +1,23 @@
+{
+  "name": "api-karate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "nodemon ./src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "jsonschema": "^1.4.1",
+    "supertest": "^6.3.3"
+  },
+  "devDependencies": {
+    "jest": "^29.4.1",
+    "nodemon": "^2.0.20"
+  }
+}
