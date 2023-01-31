@@ -17,10 +17,10 @@ const userSchema = {
         },
         isAdmin: {
             type: 'boolean',
-            default: false
+            default: false,
         }
     },
-    required: ['name', 'email', 'password'],
+    required: ['name', 'email', 'password', 'isAdmin'],
     additionalProperties: false,
 };
 
