@@ -7,6 +7,9 @@ const validateAuth = require("../middlewares/validateAuth");
 const controller = new UsersController;
 
 const usersRouters = Router();
+
 usersRouters.post("/", [validateAuth, validateRequest], controller.create);
+usersRouters.get("/", validateAuth, controller.index);
+usersRouters.delete("/:id", [validateAuth, validateRequest], controller.delete);
 
 module.exports = usersRouters;
