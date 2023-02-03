@@ -15,7 +15,7 @@ class SessionController {
             const { getUserByParameter } = new DatabaseRepository();
             const { comparePassword } = new CryptInfo();
 
-            const user = await getUserByParameter(email);
+            const user = await getUserByParameter('email', email);
             if (!user){
                 throw new AppError('Email not found', 400);
             }

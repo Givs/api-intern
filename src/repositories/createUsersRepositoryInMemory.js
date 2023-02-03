@@ -14,8 +14,8 @@ class createUsersRepositoryInMemory {
         return user;
     }
 
-    async getUserByParameter(email) {
-        return this.users.find(user => user.email === email);
+    async getUserByParameter(email, value) {
+        return this.users.find(user => user.email === value);
     }
 
 }

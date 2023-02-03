@@ -12,7 +12,7 @@ class UserCreateService {
     async execute({ name, email, password, isAdmin }) {
         try {
             //check if email exists in database
-            const emailExists = await this.userRepository.getUserByParameter(email);
+            const emailExists = await this.userRepository.getUserByParameter('email', email);
             if (emailExists) {
                 throw new AppError('Email already exists', 400);
             }
