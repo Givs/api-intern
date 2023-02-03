@@ -12,10 +12,10 @@ class SessionController {
         try {
             const { email, password } = req.body;
 
-            const { checkIfEmailExists } = new DatabaseRepository();
+            const { getUserByParameter } = new DatabaseRepository();
             const { comparePassword } = new CryptInfo();
 
-            const user = await checkIfEmailExists(email);
+            const user = await getUserByParameter(email);
             if (!user){
                 throw new AppError('Email not found', 400);
             }
