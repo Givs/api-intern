@@ -1,5 +1,7 @@
 const AppError = require("../utils/AppError");
-const { hashPassword } = require("../utils/passwordCrypt");
+const CryptInfo = require("../utils/CryptInfo");
+
+const { hashPassword } = new CryptInfo();
 
 class UserCreateService {
 
@@ -8,22 +10,24 @@ class UserCreateService {
     }
 
     async execute({ name, email, password, isAdmin }) {
-
-        //check if email exists in database
-        const emailExists = await this.userRepository.checkIfEmailExists(email);
-        if (emailExists) {
-            throw new AppError('Email already exists', 400);
-        }
-
-        const hashedPassword = await hashPassword(password);
-
-
-        //add user on database
         try {
+            //check if email exists in database
+            const emailExists = await this.userRepository.checkIfEmailExists(email);
+            if (emailExists) {
+                throw new AppError('Email already exists', 400);
+            }
+
+            const hashedPassword = await hashPassword(password);
+
+            //create user object
             const user = { name, email, password: hashedPassword, isAdmin };
+
+            //add user to database
             return await this.userRepository.createUser(user);
         } catch (error) {
-            throw new AppError('Something wrong', 500);
+            throw error.message && error.statusCode
+                ? new AppError(error.message, error.statusCode)
+                : new AppError('Something went wrong', 500);
         }
     }
 }

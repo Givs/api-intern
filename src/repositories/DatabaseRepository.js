@@ -2,7 +2,7 @@ const knex = require('knex');
 const config = require('../../knexfile');
 const db = knex(config['development']);
 
-class createUsersRepository {
+class DatabaseRepository {
     async checkIfEmailExists(email) {
         return db('users').where({email}).first();
     }
@@ -12,4 +12,4 @@ class createUsersRepository {
     }
 }
 
-module.exports = createUsersRepository;
+module.exports = DatabaseRepository;
