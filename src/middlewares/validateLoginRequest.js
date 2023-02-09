@@ -2,7 +2,7 @@ const { Validator } = require('jsonschema');
 const validator = new Validator();
 
 const AppError = require("../utils/AppError");
-const loginSchema = require("../schemas/loginSchema");
+const loginSchema = require("../schemas/session/loginSchema");
 
 const validateLoginRequest = (req, res, next) => {
     const { errors } = validator.validate(req.body, loginSchema);
