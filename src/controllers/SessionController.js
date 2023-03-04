@@ -39,8 +39,9 @@ class SessionController {
                 expiresIn
             })
 
-            return res.send({ token });
+            return res.send({ user, token });
         } catch (error) {
+            console.log(error)
             throw error.message && error.statusCode
                 ? new AppError(error.message, error.statusCode)
                 : new AppError('Something went wrong', 500);
